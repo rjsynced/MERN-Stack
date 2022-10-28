@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const GetPokemon = () => {
     const [pokemon, setPokemon] = useState([]);
     const [clicked, setClicked] = useState(false)
-    
     useEffect(() => {
-        if (clicked === true) {
-            fetch("https://pokeapi.co/api/v2/pokemon")
-                .then(response => response.json())
-                .then(response => setPokemon(response.results))
+        if(clicked === true){
+            axios.get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=807")
+                .then(response => setPokemon(response.data.results))
     }}, [clicked])
 
     const FetchEmAll = () => {
