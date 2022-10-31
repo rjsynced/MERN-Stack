@@ -1,7 +1,7 @@
 function tossCoin() {
     return Math.random() > 0.5 ? "heads" : "tails";
 }
-
+    console.log('first log')
     function fiveHeads() {
         return new Promise( (resolve, reject) => {
             let headsCount = 0;
@@ -23,7 +23,6 @@ function tossCoin() {
             }
         })
     }
-
     fiveHeads()
         .then( res => console.log(res) )
         .catch( err => console.log(err) );
