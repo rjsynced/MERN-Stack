@@ -24,13 +24,13 @@ const UserForm = (props) => {
     };
 
     const validFirstName = (e) => {
-        setfirstName(e.target.value);
+        setfirstNameError(e.target.value);
         if(e.target.value.length < 1) {
-            setfirstName("First Name is required!");
+            setfirstNameError("First Name is required!");
         } else if(e.target.value.length < 2) {
-            setfirstName("First Name must be 2 characters or longer!");
+            setfirstNameError("First Name must be 2 characters or longer!");
         } else {
-            setfirstName("");
+            setfirstNameError("");
         }
     }
     const validLastName = (e) => {
@@ -78,7 +78,7 @@ const UserForm = (props) => {
                 <input type="text" onChange={ validLastName} />
                 {
                     setlastName ?
-                    <p style={{color:'red'}}>{ validLastName }</p> :
+                    <p style={{color:'red'}}>{ validLastNameError }</p> :
                     ''
                 }
             </div>
