@@ -1,13 +1,14 @@
 // this is a more consolidated form
 import React, { useState } from 'react'
 import axios from 'axios'
+import { Outlet } from 'react-router-dom'
 
 const initialState = {
     title: "",
     price: "",
     description: ""
 }
-const ProductForm= () => { 
+const ProductForm= (props) => { 
     const [values, setValues] = useState(initialState)
     const [errors, setErrors] = useState(initialState)
     const [isValid, setIsValid] = useState(false)
@@ -17,11 +18,10 @@ const ProductForm= () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isValid) {
-            axios.post('http://127.0.0.1:8000/api/products',
-                values
-        )
+            axios.post('http://127.0.0.1:8000/api/products', values)
             .then(res=>console.log(res))
             .catch(err=>console.log(err))
+            props.handleSubmit(values)
             setValues(initialState);
         }
     }
@@ -83,6 +83,7 @@ const ProductForm= () => {
                 {errors.description && <p style={{color:'red'}}>{ errors.description }</p>}
             </div>
             <button className='Submit'>Submit Form</button>
+            <Outlet />
         </form>
     )
 }
