@@ -9,7 +9,7 @@ app.use(express.json(), express.urlencoded({ extended: true }));
 app.use(cors())
 
 const rootRouter = new express.Router()
-rootRouter.use("/api/products", productsRouter)
+rootRouter.use("/api", productsRouter)
 app.use(rootRouter)
 
 app.listen(port, () => console.log(`The server is all fired up on ${port}`));

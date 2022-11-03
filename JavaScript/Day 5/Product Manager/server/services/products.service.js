@@ -11,7 +11,7 @@ class ProductService {
 
     static findOneProduct = async (req, res) => {
         try {
-            return res.status(200).json(await Product.find({ _id: req.params._id }))
+            return res.status(200).json(await Product.find({ _id: req.params.id }))
         } catch (err) {
             return res.status(404).json({ error: "Something went wrong" })
         }
@@ -27,9 +27,9 @@ class ProductService {
 
     static updateProduct = async (req, res) => {
         try {
-            const product = await Product.findOne({ _id: req.params._id })
-            product.title = req.body.setup
-            product.price = req.body.punchline
+            const product = await Product.findOne({ _id: req.params.id })
+            product.title = req.body.title
+            product.price = req.body.price
             product.description = req.body.description
             return res.status(200).json(await product.save())
         } catch (err) {
@@ -39,7 +39,7 @@ class ProductService {
 
     static deleteProduct = async (req, res) => {
         try {
-            return res.status(200).json(await Product.remove({ _id: req.params._id }))
+            return res.status(200).json(await Product.remove({ _id: req.params.id }))
         } catch (err) {
             return res.status(404).json({ error: "Something went wrong" })
         }
